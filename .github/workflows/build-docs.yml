@@ -21,9 +21,15 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
     
     - name: Doxygen Action
       uses: mattnotmitt/doxygen-action@v1.1.0
     
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.5.2
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: docs # The folder the action should deploy.
